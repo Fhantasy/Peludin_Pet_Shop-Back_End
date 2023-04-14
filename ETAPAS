@@ -33,3 +33,6 @@ esse usuario informado no 'sequelizeCli.js'.Após isso na linha de comando digit
 o banco de dados especificado. Criar um arquivo de configuração do sequelize na raiz chamado .sequelizerc e lá exportar um objeto informando o caminho para as pastas 'config', 'models', 'migrations' e 'seeders'. Criar a pasta 'models' e 'database' em 'src' e na pasta database criar as pastas 'migrations' e 'seeders' e o arquivo index.ts aonde vai se importar o sequelize
 e criar uma variavel dele com suas configurações de conexão com o banco de dados. No sever dentro de 'app.listen' é colocado
 um teste de conexão com o banco de dados.
+
+5 - Configuração do AdiminJS
+Crie a pasta “adminjs” dentro de “src” e o arquivo index.ts dentro dela contendo o registro do adapter do sequelize, a instancia do AdminJS com suas configurações e a criação de um router a partir de uma instância da classe AdminJs. Criar a pasta 'public' e dentro 'images' e dentro colocar a imagem do logo depois ir no server e adicionar 'public' como a pasta de arquivos estaticos 'app.use(express.static('public'))'
