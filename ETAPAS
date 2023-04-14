@@ -1,0 +1,35 @@
+1 - Instalar as bibliotecas nessessarias:
+Produção
+express - Para criar o servidor
+express - formidable - Para usar forms no AdminJS
+adminjs - Para criar a interface de Admin
+@adminjs/express - Para indicar qual o framework do servidor vamos trabalhar no AdminJS
+@adminjs/sequelize - Para indicar qual o framework ORM (conexão com banco de dados) vamos trabalhar no AdminJS
+@adminjs/upload - Para trabalhar com uploads no AdminJS
+pg - Pra se conectar com o banco de dados PostGress
+sequelize - ORM para conexão com o banco de dados
+
+Desenvolvimento
+typescript - Para usar o typecript
+ts-node-dev - Para rodar a aplicação em desenvolvimento
+sequelize-cli - Para criar migrations e bancos de dados no console
+@types/express - Para ter a tipagem no express
+@types/node - Para ter a tipagem no node
+
+2 - Git
+Criar um arquivo .gitignore para ignorar os arquivos no repositório git, colocar a pasta node_modules para ser
+ignorada. Dar um git init para iniciar o repositório git.
+
+3 - Server
+Criar a pasta 'src' e dentro o 'server.ts'. No server fazer i import do express e atribui-lo a 'const app',
+depois dar um 'app.listen(PORT)' (PORT vem de process.env.PORT). Criar o script "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts" para rodar o ts-node-dev. E dar um 'npx tsc --init' para adicionar o
+arquivo de configurações do typescript.
+
+4 - Conexão com o banco de dados
+Criar uma pasta 'config' e dentro um arquivo 'sequelizeCli.js' para configurar a conexão com o banco de dados posrtgres.
+No arquivo vai o export de um objeto com outro objeto 'development' contendo as informações do banco de dados a ser acessado.
+Depois tem que ir no shell do postgres e dar um 'CREATE USER peludin WITH CREATEDB ENCRYPTED PASSWORD 'peludin';' para criar
+esse usuario informado no 'sequelizeCli.js'.Após isso na linha de comando digitar 'npx sequelize-cli db:create' para criar
+o banco de dados especificado. Criar um arquivo de configuração do sequelize na raiz chamado .sequelizerc e lá exportar um objeto informando o caminho para as pastas 'config', 'models', 'migrations' e 'seeders'. Criar a pasta 'models' e 'database' em 'src' e na pasta database criar as pastas 'migrations' e 'seeders' e o arquivo index.ts aonde vai se importar o sequelize
+e criar uma variavel dele com suas configurações de conexão com o banco de dados. No sever dentro de 'app.listen' é colocado
+um teste de conexão com o banco de dados.
