@@ -50,3 +50,25 @@ um index.ts para compartilhar todos os models. Agora na pasta adminJs criar uma 
 category.ts aonde vão ficar as opções a serem exibidas para category la no AdminJS, ainda em resources criar um index.ts 
 para exportar um arquivo com todos os resources e suas associações com os models e por fim no index.ts em adminJs colocar a
 opção resources como o arquivo de todas as associações feito anteriormente.
+
+7 - Criando as demais tabelas
+Criar as outras tabelas e como anteriormente configurar no AdminJS. No resource de product exportar outra opção chamada 
+productResourceFeatures onde vai ter as opções de upload do AdiminJS e dentro de uploadFileFeature passar essas opções.
+
+8 - Criptografando a senha
+Dar um "npm i bcrypt" para isntalar a ferramenta de criptografar. La em "models" "User.ts" colocar um terceiro parametro no
+"define" sendo "hooks" e nele definir um "beforeSave" que vai ser executado antes do model ser salvo no banco de dados, passando
+o user e verificando se é uma nova instancia ou está sendo alterada, então usando o bcrypt para criptografar a senha antes de
+ir para o banco de dados.
+
+9 - Fazendo login de Administrador
+La no index do AdiminJS podemos agora trocar o "buildRouter" po "buildAuthenticatedRouter" aonde colocaremos a instancia de
+AdiminJS e como opções "authenticate" que vai gerar o login, em uma função com parametros de "email" e "password" pegamos o 
+email e tentamos encontrar no banco de dados um usuario que bate, se tiver e se a "role" for "admin" então compara-se 
+as senhas usando o bcrypt.compare e por fim retorna o "user". O "coockiePassword"  é colocado um qualquer e tambem algumas 
+outra opções padrão.
+
+10 - Tradução do AdminJS
+criar um arquivo"locale.ts" na pasta "adminJs" e la exportar um objeto do tipo Locale com as configurações de tradução,
+depois no "index.ts" nas opções do AdminJS adicionar um "locale" sendo o arquivo de configurações exportado.
+

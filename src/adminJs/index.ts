@@ -5,6 +5,7 @@ import { sequelize } from "../database";
 import { adminJsResources } from "./resources";
 import { User } from "../models";
 import bcrypt from "bcrypt";
+import { locale } from "./locale";
 
 //Passa o adaptador do banco de dados que será utilizado
 AdminJS.registerAdapter(AdiminJSSequelize);
@@ -16,6 +17,7 @@ export const adminJs = new AdminJS({
   //Caminho da rota
   rootPath: "/admin",
   resources: adminJsResources,
+  locale: locale,
   branding: {
     companyName: "Peludin Pet Shop",
     logo: "/images/LogoPeludin.png",
@@ -39,7 +41,7 @@ export const adminJs = new AdminJS({
   },
 });
 
-//Constroi e insere as rotas do AdminJS no express
+//Constroi e insere as rotas do AdminJS no express com autenticação
 export const adminJsRouter = AdminJSExpress.buildAuthenticatedRouter(
   adminJs,
   {
