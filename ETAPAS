@@ -22,7 +22,8 @@ ignorada. Dar um git init para iniciar o repositório git.
 
 3 - Server
 Criar a pasta 'src' e dentro o 'server.ts'. No server fazer i import do express e atribui-lo a 'const app',
-depois dar um 'app.listen(PORT)' (PORT vem de process.env.PORT). Criar o script "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts" para rodar o ts-node-dev. E dar um 'npx tsc --init' para adicionar o
+depois dar um 'app.listen(PORT)' (PORT vem de process.env.PORT). Criar o script "dev": "ts-node-dev --transpile-only 
+--ignore-watch node_modules src/server.ts" para rodar o ts-node-dev. E dar um 'npx tsc --init' para adicionar o
 arquivo de configurações do typescript.
 
 4 - Conexão com o banco de dados
@@ -30,9 +31,22 @@ Criar uma pasta 'config' e dentro um arquivo 'sequelizeCli.js' para configurar a
 No arquivo vai o export de um objeto com outro objeto 'development' contendo as informações do banco de dados a ser acessado.
 Depois tem que ir no shell do postgres e dar um 'CREATE USER peludin WITH CREATEDB ENCRYPTED PASSWORD 'peludin';' para criar
 esse usuario informado no 'sequelizeCli.js'.Após isso na linha de comando digitar 'npx sequelize-cli db:create' para criar
-o banco de dados especificado. Criar um arquivo de configuração do sequelize na raiz chamado .sequelizerc e lá exportar um objeto informando o caminho para as pastas 'config', 'models', 'migrations' e 'seeders'. Criar a pasta 'models' e 'database' em 'src' e na pasta database criar as pastas 'migrations' e 'seeders' e o arquivo index.ts aonde vai se importar o sequelize
+o banco de dados especificado. Criar um arquivo de configuração do sequelize na raiz chamado .sequelizerc e lá exportar um 
+objeto informando o caminho para as pastas 'config', 'models', 'migrations' e 'seeders'. Criar a pasta 'models' e 'database' em 'src' e na pasta database criar as pastas 'migrations' e 'seeders' e o arquivo index.ts aonde vai se importar o sequelize
 e criar uma variavel dele com suas configurações de conexão com o banco de dados. No sever dentro de 'app.listen' é colocado
 um teste de conexão com o banco de dados.
 
 5 - Configuração do AdiminJS
-Crie a pasta “adminjs” dentro de “src” e o arquivo index.ts dentro dela contendo o registro do adapter do sequelize, a instancia do AdminJS com suas configurações e a criação de um router a partir de uma instância da classe AdminJs. Criar a pasta 'public' e dentro 'images' e dentro colocar a imagem do logo depois ir no server e adicionar 'public' como a pasta de arquivos estaticos 'app.use(express.static('public'))'
+Crie a pasta “adminjs” dentro de “src” e o arquivo index.ts dentro dela contendo o registro do adapter do sequelize, a 
+instancia do AdminJS com suas configurações e a criação de um router a partir de uma instância da classe AdminJs. Criar a 
+pasta 'public' e dentro 'images' e dentro colocar a imagem do logo depois ir no server e adicionar 'public' como a pasta 
+de arquivos estaticos 'app.use(express.static('public'))'
+
+6 - Primeiro model e adição ao AdminJS
+Criar uma migration com "npx sequelize-cli migration:generate --name create-categories-table" adicionar as informações a serem
+criadas na tabela e rodar a migration com "npx sequelize-cli db:migrate". Agora criar na pasta models o arquivo "Category.ts"
+aonde vai ser criado o model do sequelize para a interação entre a aplicação e o banco de dados, na pasta models ainda criar
+um index.ts para compartilhar todos os models. Agora na pasta adminJs criar uma pasta resources e dentro dela um arquivo 
+category.ts aonde vão ficar as opções a serem exibidas para category la no AdminJS, ainda em resources criar um index.ts 
+para exportar um arquivo com todos os resources e suas associações com os models e por fim no index.ts em adminJs colocar a
+opção resources como o arquivo de todas as associações feito anteriormente.

@@ -2,6 +2,7 @@ import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express";
 import AdiminJSSequelize from "@adminjs/sequelize";
 import { sequelize } from "../database";
+import { adminJsResources } from "./resources";
 
 //Passa o adaptador do banco de dados que será utilizado
 AdminJS.registerAdapter(AdiminJSSequelize);
@@ -12,6 +13,7 @@ export const adminJs = new AdminJS({
   databases: [sequelize],
   //Caminho da rota
   rootPath: "/admin",
+  resources: adminJsResources,
   branding: {
     companyName: "Peludin Pet Shop",
     logo: "/images/LogoPeludin.png",
@@ -23,11 +25,11 @@ export const adminJs = new AdminJS({
         primary40: "#14888b",
         primary20: "#14888b",
         grey100: "#c95c7a",
-        grey80: "#c95c7a",
-        grey60: "#c95c7a",
-        grey40: "#c95c7a",
-        grey20: "#c95c7a",
-        filterBg: "14888b",
+        grey80: "#696969",
+        grey60: "#696969",
+        grey40: "#696969",
+        grey20: "#dddddd",
+        filterBg: "#333333",
         accent: "#151515",
         hoverBg: "#151515",
       },
