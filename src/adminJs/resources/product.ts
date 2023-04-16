@@ -4,6 +4,11 @@ import path from "path";
 
 export const productResourceOptions: ResourceOptions = {
   navigation: "Catálogo",
+  properties: {
+    description: {
+      type: "textarea",
+    },
+  },
   editProperties: [
     "name",
     "description",
@@ -24,16 +29,7 @@ export const productResourceOptions: ResourceOptions = {
     "createdAt",
     "updatedAt",
   ],
-  listProperties: [
-    "id",
-    "name",
-    "description",
-    "price",
-    "uploadImg",
-    "featured",
-    "onSale",
-    "categoryId",
-  ],
+  listProperties: ["id", "name", "price", "featured", "onSale", "categoryId"],
   showProperties: [
     "id",
     "name",

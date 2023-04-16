@@ -10,9 +10,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.DataTypes.INTEGER,
       },
-      name: {
+      first_name: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
+      },
+      last_name: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      birth: {
+        allowNull: false,
+        type: Sequelize.DataTypes.DATE,
       },
       email: {
         allowNull: false,
@@ -25,6 +33,9 @@ module.exports = {
       role: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
+        validate: {
+          isIn: [["admin", "user"]],
+        },
       },
       created_at: {
         allowNull: false,
