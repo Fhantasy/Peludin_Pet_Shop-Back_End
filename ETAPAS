@@ -72,3 +72,18 @@ outra opções padrão.
 criar um arquivo"locale.ts" na pasta "adminJs" e la exportar um objeto do tipo Locale com as configurações de tradução,
 depois no "index.ts" nas opções do AdminJS adicionar um "locale" sendo o arquivo de configurações exportado.
 
+11 - Modificando o Dashboard do AdiminJS
+La no "index.ts" da pasta "adminJs" coloca-se mais uma opção "dashboard" onde se especifica o "component" a ser usado e o 
+"handler" que é uma função para passar informações da api para a pagina do dashboard. Ai em "adminJs" cria-se outra pasta
+"components" onde vai o arquivo "Dashboard.tsx" e nele fazemos uma pagina react (colocando em tsconfig.json a opção de jsx como
+react) pegando as informações da api com o "ApiClient" do AdiminJS e pegando a função de "handler" com "api.getDashboard()", 
+também pegamos o "admin" atual com const "[currentAdmin] = useCurrentAdmin()" e fazemos a pagina. Nota - na hora do "map" 
+se pega o "resource" usando "Object.entries(resource)" que transforma um objeto em um array com a chave e o valor em cada index
+ex ["Produtos", 2]
+
+12 - Arrumando as opções do AdminJS
+Para fechar a parte do AdiminJS pegasse as opções "dashboard", "branding", e as opções de autenticação e coloca em novos arquivos
+só utilizando então o importe nas opções em "index.ts". Nota - Para o export dos arquivos de configuração em "branding.ts"
+o objeto exportado é do tipo "BrandingOptions", em authenticate é do tipo "AuthenticationOptions" e em dashboard foi especificado
+a tipagem com um "component" do tipo "string" e um handler do tipo "PageHandler".
+
