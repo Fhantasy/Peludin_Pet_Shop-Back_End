@@ -9,6 +9,7 @@ export interface Product {
   imgUrl: string;
   featured: boolean;
   onSale: boolean;
+  priceOnSale: number;
   categoryId: number;
 }
 
@@ -48,6 +49,10 @@ export const Product = sequelize.define("Product", {
   onSale: {
     defaultValue: false,
     type: DataTypes.BOOLEAN,
+  },
+  priceOnSale: {
+    allowNull: false,
+    type: DataTypes.FLOAT,
   },
   categoryId: {
     allowNull: false,

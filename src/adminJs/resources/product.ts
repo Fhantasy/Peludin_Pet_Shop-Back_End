@@ -16,6 +16,7 @@ export const productResourceOptions: ResourceOptions = {
     "uploadImg",
     "featured",
     "onSale",
+    "priceOnSale",
     "categoryId",
   ],
   filterProperties: [
@@ -38,6 +39,7 @@ export const productResourceOptions: ResourceOptions = {
     "uploadImg",
     "featured",
     "onSale",
+    "priceOnSale",
     "categoryId",
     "createdAt",
     "updatedAt",

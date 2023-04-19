@@ -33,6 +33,10 @@ module.exports = {
         defaultValue: false,
         type: Sequelize.DataTypes.BOOLEAN,
       },
+      price_on_sale: {
+        allowNull: false,
+        type: Sequelize.DataTypes.FLOAT,
+      },
       category_id: {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,

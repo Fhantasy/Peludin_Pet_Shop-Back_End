@@ -36,6 +36,7 @@ export const locale: Locale = {
       adresses: "Endereços",
       categories: "Categorias",
       users: "Usuários",
+      carts: "Carrinhos",
     },
     properties: {
       firstName: "Primeiro Nome",
@@ -58,6 +59,7 @@ export const locale: Locale = {
       imgUrl: "URL da Imagem",
       uploadImg: "Upload da Imagem",
       categoryId: "Categoria",
+      productId: "Produto",
       userId: "Usuário",
       createdAt: "Criado em",
       updatedAt: "Atualizado em",
