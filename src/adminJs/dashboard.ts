@@ -1,11 +1,13 @@
-import AdminJS, { PageHandler } from "adminjs/types/src";
+import AdminJS, { ComponentLoader, PageHandler } from "adminjs";
 import { Category, Product, User } from "../models";
+import { Components } from "./components";
 
 export const dashBoardOptions: {
   handler?: PageHandler;
   component?: string;
 } = {
-  component: AdminJS.bundle("./components/Dashboard"),
+  component: Components.Dashboard,
+
   handler: async (req, res, context) => {
     const users = await User.count({ where: { role: "user" } });
     const products = await Product.count();

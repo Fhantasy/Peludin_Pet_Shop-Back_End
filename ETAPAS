@@ -82,8 +82,11 @@ se pega o "resource" usando "Object.entries(resource)" que transforma um objeto 
 ex ["Produtos", 2]
 
 12 - Arrumando as opções do AdminJS
-Para fechar a parte do AdiminJS pegasse as opções "dashboard", "branding", e as opções de autenticação e coloca em novos arquivos
+Para fechar a parte do AdiminJS pegas-se as opções "dashboard", "branding", e as opções de autenticação e coloca em novos arquivos
 só utilizando então o importe nas opções em "index.ts". Nota - Para o export dos arquivos de configuração em "branding.ts"
 o objeto exportado é do tipo "BrandingOptions", em authenticate é do tipo "AuthenticationOptions" e em dashboard foi especificado
-a tipagem com um "component" do tipo "string" e um handler do tipo "PageHandler".
+a tipagem com um "component" do tipo "string" e um handler do tipo "PageHandler". Foi atualizado o metodo de pegar o component
+criando um arquivo "index" em "components" e exportando um objeto com uma variavel do tipo "Component Loader" que pega o 
+component criado em "Dashboard", la em "dashboard" é adicionado então o component como "Component.Dashboard" e la em "index" 
+das opções do AdiminJS tem que ser adicionado nas opções a instancia de "componentLoader". 
 

@@ -7,6 +7,7 @@ import { locale } from "./locale";
 import { dashBoardOptions } from "./dashboard";
 import { brandingOptions } from "./branding";
 import { authenticationOptions } from "./authentication";
+import { componentLoader } from "./components";
 
 //Passa o adaptador do banco de dados que será utilizado
 AdminJS.registerAdapter(AdiminJSSequelize);
@@ -20,6 +21,7 @@ export const adminJs = new AdminJS({
   resources: adminJsResources,
   locale: locale,
   dashboard: dashBoardOptions,
+  componentLoader,
   branding: brandingOptions,
 });
 
