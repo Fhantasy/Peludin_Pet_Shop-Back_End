@@ -90,3 +90,12 @@ criando um arquivo "index" em "components" e exportando um objeto com uma variav
 component criado em "Dashboard", la em "dashboard" é adicionado então o component como "Component.Dashboard" e la em "index" 
 das opções do AdiminJS tem que ser adicionado nas opções a instancia de "componentLoader". 
 
+13 - Criando as rotas de Category
+Criar uma pasta dentro de "src" chamada "controllers" aonde criamos um arquivo "categoryController" e nele exportamos um objeto
+com os handlers para as rotas. No objeto categoryController temos as funções "index" para pegar todas as categorias dando um 
+"Category.findAll", e a função "show" onde mostramos os cursos paginados de uma determinada categoria. Em "src" criamos um
+"routes.ts" aonde chamamos o Router do express e colocamos as rotas de category com os handlers de "categoryController".
+Para criar o handler "show" criamos uma pasta "services" em "src" aonde colocamos o arquivo "categoryService", nele exportamos
+uma função para pegar os cursos associados a categoria e retornarmos só aqueles de acordo com a pagina e o numero por pagina.
+Também em "src" criamos uma pasta "helpers" e nela o arquivo "productsPagination" aonde exportamos uma função para pegar o page 
+e o perPage da query e tranforma-los em numeros. Por fim em "server" adicionamos o "router" criado.

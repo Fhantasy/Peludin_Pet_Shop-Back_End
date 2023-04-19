@@ -15,7 +15,7 @@ Product.belongsToMany(User, {
   as: "users",
 });
 
-Category.hasMany(Product);
+Category.hasMany(Product, { as: "products" });
 Product.belongsTo(Category);
 
 User.hasOne(Adress);
