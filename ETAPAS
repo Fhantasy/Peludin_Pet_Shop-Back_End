@@ -104,6 +104,24 @@ e o perPage da query e tranforma-los em numeros. Por fim em "server" adicionamos
 Criando em "controllers" um controller para os "products" e um service "productService" criamos as rotas "index", "show", "search",
 "featured" e "onSale", algumas com paginação usando o service e o helper "productPagination".
 
-15 - Criando as rotas de User
+15 - Criando as rotas de Registro e Login com token pelo Json Web Token
 No "service" criamos um "userService" aonde colocamos os metodos para verificar se o email ja existe, e para criar um novo
 usuário. Criamos um "authController" aonde fazamos o metodo register que verifica o email e registra o usuário.
+Instalamos o "jsonwebtoken" e o "@types/jsonwebtoken" via "npm", depois criamos um "jwtService" e nele criamos um 
+metodo de assinar o token (que precisa de um payload que é o que vai ser criptografado, uma chave de criptografia e uma data
+de expiração) e um metodo de verificar um token e em uma função de callback passar o payload decodificado ou um erro. Para criar o 
+metodo de login em "authController" vamos no model "User" aonde adicionamos um metodo "checkPassword" na instancia de User
+que tem como parametros uma senha para ser comparada com o "bcrypt" e uma função de callback aonde é passada pelo "bcrypt" se
+deu erro ou se a senha é a mesma na comparação. criamos o metodo "login" em "authController" aonde pegamos um email e password
+da requisição e tentamos achar um user pelo email com "findByEmail", depois se veio um user usamos o metodo "checkPassword" nele
+e se as senhas conferem criamos um payload como um objeto com o id, firsName e email e chamamos o "signToken" do "authService"
+para criar um token passando o payload e o tempo de expiração. Retornamos o payload, e o token.
+
+16 - Criando um middleware de authentificação de rotas com Json Web Token
+Em "src" criamos a pasta "middlewares" e dentro o arquivo "auth.ts" aonde vamos fazer o middleware de autentificação para as 
+rotas pegando o token do header da requisição (alem de req e res temos que botar o "next" nos parametros). Com o token tiramos
+a parte de "Bearer " para ficar só o token, damos um "verifyToken" para pegar o payload decodificado do callback e pegamos o
+user que por "findByEmail" tiver o email do payload, então passamos no req.user esse user que obtivemos e damos um "next()" 
+(Precisamos fazer uma interface chamada "AuthenticatedRequest" que extende o "Request" para adicionar o req.user). Com esse 
+middleware podemos coloca-lo na frente de qualquer handler la nas "routes" para que verifique primeiro se tem um token no
+authorization dos headers da requisição.

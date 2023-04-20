@@ -2,6 +2,7 @@ import { DataTypes, Model, Optional } from "sequelize";
 import { sequelize } from "../database";
 import bcrypt from "bcrypt";
 
+type CheckPassword = (error?: Error, isSame?: boolean) => void;
 export interface User {
   id: number;
   firstName: string;
@@ -15,7 +16,9 @@ export interface User {
 export interface UserCreationAttributes extends Optional<User, "id"> {}
 export interface UserInstance
   extends Model<User, UserCreationAttributes>,
-    User {}
+    User {
+  checkPassword: (password: string, callbackfn: CheckPassword) => void;
+}
 
 export const User = sequelize.define<UserInstance, User>(
   "User",
@@ -64,3 +67,17 @@ export const User = sequelize.define<UserInstance, User>(
     },
   }
 );
+
+//O prototype insere o metodo no model para todas as instancias
+User.prototype.checkPassword = function (
+  password: string,
+  callbackfn: CheckPassword
+) {
+  bcrypt.compare(password, this.password, (error, isSame) => {
+    if (error) {
+      callbackfn(error);
+    } else {
+      callbackfn(error, isSame);
+    }
+  });
+};
