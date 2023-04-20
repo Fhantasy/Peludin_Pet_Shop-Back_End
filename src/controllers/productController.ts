@@ -1,10 +1,17 @@
 import { Request, Response } from "express";
 import { Product } from "../models";
+import { productService } from "../services/productService";
+import { getPaginationParams } from "../helpers/productsPagination";
 
 export const productController = {
+  //GET /products/all
   index: async (req: Request, res: Response) => {
+    const [page, perPage] = getPaginationParams(req.query);
     try {
-      const products = await Product.findAll();
+      const products = await productService.findAllWithPagination(
+        page,
+        perPage
+      );
       res.json(products);
     } catch (error) {
       if (error instanceof Error) {
@@ -13,6 +20,7 @@ export const productController = {
     }
   },
 
+  //GET /products/:id
   show: async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -25,6 +33,7 @@ export const productController = {
     }
   },
 
+  //GET /products/featured
   featured: async (req: Request, res: Response) => {
     try {
       const featuredProducts = await Product.findAll({
@@ -38,12 +47,36 @@ export const productController = {
       }
     }
   },
+
+  //GET /products/onsale
   onSale: async (req: Request, res: Response) => {
+    const [page, perPage] = getPaginationParams(req.params);
     try {
-      const onSaleProducts = await Product.findAll({
-        where: { on_sale: true },
-      });
+      const onSaleProducts = await productService.findAllWithPagination(
+        page,
+        perPage,
+        {
+          where: { on_sale: true },
+        }
+      );
       res.json(onSaleProducts);
+    } catch (error) {
+      if (error instanceof Error) {
+        return res.status(400).json({ message: error.message });
+      }
+    }
+  },
+
+  //GET /products/search
+  search: async (req: Request, res: Response) => {
+    const { name } = req.query;
+    const [page, perPage] = getPaginationParams(req.query);
+    try {
+      if (typeof name !== "string")
+        throw new Error("name must be of type string");
+      const products = await productService.findByName(name, page, perPage);
+
+      res.json(products);
     } catch (error) {
       if (error instanceof Error) {
         return res.status(400).json({ message: error.message });

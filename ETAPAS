@@ -99,3 +99,11 @@ Para criar o handler "show" criamos uma pasta "services" em "src" aonde colocamo
 uma função para pegar os cursos associados a categoria e retornarmos só aqueles de acordo com a pagina e o numero por pagina.
 Também em "src" criamos uma pasta "helpers" e nela o arquivo "productsPagination" aonde exportamos uma função para pegar o page 
 e o perPage da query e tranforma-los em numeros. Por fim em "server" adicionamos o "router" criado.
+
+14 - Criando as rotas de Product
+Criando em "controllers" um controller para os "products" e um service "productService" criamos as rotas "index", "show", "search",
+"featured" e "onSale", algumas com paginação usando o service e o helper "productPagination".
+
+15 - Criando as rotas de User
+No "service" criamos um "userService" aonde colocamos os metodos para verificar se o email ja existe, e para criar um novo
+usuário. Criamos um "authController" aonde fazamos o metodo register que verifica o email e registra o usuário.

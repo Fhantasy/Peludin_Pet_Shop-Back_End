@@ -6,7 +6,7 @@ export function getPaginationParams(
   const perPageNumber =
     typeof perPage === "string" && parseInt(perPage, 10) > 0
       ? parseInt(perPage, 10)
-      : 5;
+      : 20;
 
   const pageNumber =
     typeof page === "string" && parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;

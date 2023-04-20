@@ -49,6 +49,9 @@ export const User = sequelize.define<UserInstance, User>(
     role: {
       allowNull: false,
       type: DataTypes.STRING,
+      validate: {
+        isIn: [["admin", "user"]],
+      },
     },
   },
   {
