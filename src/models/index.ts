@@ -2,17 +2,17 @@ import { Category } from "./Category";
 import { Product } from "./Product";
 import { User } from "./User";
 import { Adress } from "./Adress";
-import { Cart } from "./Cart";
+import { Purchase } from "./Purchase";
 
-User.belongsToMany(Product, {
-  foreignKey: "userId",
-  through: "carts",
+Purchase.belongsToMany(Product, {
+  foreignKey: "purchaseId",
+  through: "product_purchases",
   as: "products",
 });
-Product.belongsToMany(User, {
+Product.belongsToMany(Purchase, {
   foreignKey: "productId",
-  through: "carts",
-  as: "users",
+  through: "product_purchases",
+  as: "purchases",
 });
 
 Category.hasMany(Product, { as: "products" });
@@ -21,4 +21,7 @@ Product.belongsTo(Category);
 User.hasOne(Adress);
 Adress.belongsTo(User);
 
-export { Category, Product, User, Adress, Cart };
+User.hasMany(Purchase);
+Purchase.belongsTo(User);
+
+export { Category, Product, User, Adress, Purchase };
