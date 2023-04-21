@@ -4,7 +4,7 @@ import { userService } from "../services/userService";
 import { JwtPayload } from "jsonwebtoken";
 import { UserInstance } from "../models/User";
 
-interface AuthorizatedRequest extends Request {
+export interface AuthorizatedRequest extends Request {
   user?: UserInstance | null;
 }
 

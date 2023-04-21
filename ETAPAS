@@ -125,3 +125,14 @@ user que por "findByEmail" tiver o email do payload, então passamos no req.user
 (Precisamos fazer uma interface chamada "AuthenticatedRequest" que extende o "Request" para adicionar o req.user). Com esse 
 middleware podemos coloca-lo na frente de qualquer handler la nas "routes" para que verifique primeiro se tem um token no
 authorization dos headers da requisição.
+
+*obs - Tirada a tabela "carts" e no lugar botei "purchases" para guardar as compras de um usuário e "productpurchases" para fazer
+o intermedio entre o usuário e a compra contendo o numero de quanto do mesmo produto está em uma compra.
+
+17 - Criando as rotas de User
+Em "userController" criamos o metodo de mostrar o usuário "show", alterar as informações de usuário "update" e de alteração da senha "updatePassword"
+adicionando metodos no "userService" para cada um. No "updatePassword" tivemos que nas opções a serem atualizadas colocar 
+"individualHooks" para usar o "hook" de antes de salvar a nova senha criptografa-la, e também a opção "returning" como true
+para retornar o user atualizado. Também fazer os metodos de criar um endereço, atualizar e mostrar, o processo é o mesmo de 
+sempre só um detalhe que para pegar o "adress" temos que pegar o "id" do usuário que vem na requisição que é autenticada e 
+então dar um "findOne" passando onde o "userId" for igual ao id do usuario pego na requisição.
