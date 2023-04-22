@@ -3,7 +3,7 @@ import { sequelize } from "../database";
 
 export interface Purchase {
   id: number;
-  userId: string;
+  userId: number;
 }
 
 export interface PurchaseCreationAttributes extends Optional<Purchase, "id"> {}

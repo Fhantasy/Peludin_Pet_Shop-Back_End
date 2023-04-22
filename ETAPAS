@@ -136,3 +136,8 @@ adicionando metodos no "userService" para cada um. No "updatePassword" tivemos q
 para retornar o user atualizado. Também fazer os metodos de criar um endereço, atualizar e mostrar, o processo é o mesmo de 
 sempre só um detalhe que para pegar o "adress" temos que pegar o "id" do usuário que vem na requisição que é autenticada e 
 então dar um "findOne" passando onde o "userId" for igual ao id do usuario pego na requisição.
+
+18 - Criando as rotas de Purchase
+Primeiramente instalar via npm o "cors" e o "@type/cors" para que a api possa receber requisições externas, a importar e adicionar 
+no "server". Depois criando um "purchaseController" e um "purchaseService", fazemos metodos de pegar todas as compras com a 
+quantidade e os produtos "index", para mostras uma compra só "show" e para criar uma compra "create".
