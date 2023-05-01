@@ -6,12 +6,8 @@ import { getPaginationParams } from "../helpers/productsPagination";
 export const productController = {
   //GET /products/all
   index: async (req: Request, res: Response) => {
-    const [page, perPage] = getPaginationParams(req.query);
     try {
-      const products = await productService.findAllWithPagination(
-        page,
-        perPage
-      );
+      const products = await Product.findAll();
       res.json(products);
     } catch (error) {
       if (error instanceof Error) {
@@ -48,25 +44,6 @@ export const productController = {
     }
   },
 
-  //GET /products/onsale
-  onSale: async (req: Request, res: Response) => {
-    const [page, perPage] = getPaginationParams(req.params);
-    try {
-      const onSaleProducts = await productService.findAllWithPagination(
-        page,
-        perPage,
-        {
-          where: { on_sale: true },
-        }
-      );
-      res.json(onSaleProducts);
-    } catch (error) {
-      if (error instanceof Error) {
-        return res.status(400).json({ message: error.message });
-      }
-    }
-  },
-
   //GET /products/search
   search: async (req: Request, res: Response) => {
     const { name } = req.query;
@@ -74,7 +51,7 @@ export const productController = {
     try {
       if (typeof name !== "string")
         throw new Error("name must be of type string");
-      const products = await productService.findByName(name, page, perPage);
+      const products = await productService.findByName(name);
 
       res.json(products);
     } catch (error) {

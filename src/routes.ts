@@ -15,7 +15,6 @@ router.get("/categories", categoryController.index);
 router.get("/categories/:id", categoryController.show);
 
 router.get("/products/featured", productController.featured);
-router.get("/products/onsale", productController.onSale);
 router.get("/products/all", productController.index);
 router.get("/products/search", productController.search);
 router.get("/products/:id", productController.show);
