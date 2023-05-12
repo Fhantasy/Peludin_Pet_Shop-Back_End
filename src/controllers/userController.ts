@@ -89,12 +89,11 @@ export const userController = {
     const userId = req.user!.id;
     const { state, city, district, street, houseNumber, phone } = req.body;
 
-    
     try {
       const adress = await Adress.findOne({ where: { userId } });
 
       if (!adress) throw new Error("Endereço não encontrado!");
-      
+
       const adressUpdated = await userService.updateAdress(adress.id, {
         state,
         city,

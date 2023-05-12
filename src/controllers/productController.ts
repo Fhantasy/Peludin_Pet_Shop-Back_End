@@ -47,7 +47,6 @@ export const productController = {
   //GET /products/search
   search: async (req: Request, res: Response) => {
     const { name } = req.query;
-    const [page, perPage] = getPaginationParams(req.query);
     try {
       if (typeof name !== "string")
         throw new Error("name must be of type string");

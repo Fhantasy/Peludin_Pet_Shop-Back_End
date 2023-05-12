@@ -27,6 +27,10 @@ export const userService = {
       email: string;
     }
   ) => {
+    const userAlreadyExists = await userService.findByEmail(attributes.email);
+    if (userAlreadyExists) {
+      throw new Error("Este email ja existe!");
+    }
     const [affectedRows, updatedUsers] = await User.update(attributes, {
       where: { id },
       returning: true,
