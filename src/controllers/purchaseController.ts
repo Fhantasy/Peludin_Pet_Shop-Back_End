@@ -23,14 +23,16 @@ export const purchaseController = {
       if (error instanceof Error) {
         return res.status(400).json({ message: error.message });
       }
+      return error;
     }
   },
   create: async (req: AuthorizatedRequest, res: Response) => {
     const userId = req.user!.id;
+    const totalPrice = req.body.totalPrice;
     const productList = req.body.products;
     try {
-      const purchase = await purchaseService.create(userId, productList);
-      res.json(purchase);
+      await purchaseService.create(userId, totalPrice, productList);
+      res.status(201).send();
     } catch (error) {
       if (error instanceof Error) {
         return res.status(400).json({ message: error.message });

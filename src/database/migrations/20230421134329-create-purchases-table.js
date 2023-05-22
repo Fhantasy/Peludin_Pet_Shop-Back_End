@@ -10,6 +10,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
+      total_price: {
+        allowNull: false,
+        type: Sequelize.DataTypes.FLOAT,
+      },
       user_id: {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,

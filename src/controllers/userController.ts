@@ -56,7 +56,7 @@ export const userController = {
     const userId = req.user!.id;
     const { state, city, district, street, houseNumber, phone } = req.body;
     try {
-      const adress = await userService.createAdress({
+      await userService.createAdress({
         state,
         city,
         district,
@@ -65,7 +65,7 @@ export const userController = {
         phone,
         userId,
       });
-      return res.status(201).json(adress);
+      return res.status(201).send();
     } catch (error) {
       if (error instanceof Error) {
         return res.status(400).json({ message: error.message });
@@ -77,10 +77,13 @@ export const userController = {
     const userId = req.user!.id;
     try {
       const adress = await Adress.findOne({ where: { userId } });
-      res.json(adress);
+
+      if (!adress) throw new Error("Nenhum endereço cadastrado!");
+
+      return res.json(adress);
     } catch (error) {
       if (error instanceof Error) {
-        return res.status(400).json({ message: error.message });
+        return res.status(404).json({ message: error.message });
       }
     }
   },
@@ -94,7 +97,7 @@ export const userController = {
 
       if (!adress) throw new Error("Endereço não encontrado!");
 
-      const adressUpdated = await userService.updateAdress(adress.id, {
+      await userService.updateAdress(adress.id, {
         state,
         city,
         district,
@@ -102,7 +105,7 @@ export const userController = {
         houseNumber,
         phone,
       });
-      res.status(201).json(adressUpdated);
+      return res.status(204).send();
     } catch (error) {
       if (error instanceof Error) {
         return res.status(400).json({ message: error.message });

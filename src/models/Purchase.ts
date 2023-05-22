@@ -3,6 +3,7 @@ import { sequelize } from "../database";
 
 export interface Purchase {
   id: number;
+  totalPrice: number;
   userId: number;
 }
 
@@ -19,6 +20,10 @@ export const Purchase = sequelize.define<PurchaseInstance, Purchase>(
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER,
+    },
+    totalPrice: {
+      allowNull: false,
+      type: DataTypes.FLOAT,
     },
     userId: {
       allowNull: false,

@@ -29,7 +29,12 @@ export const userService = {
   ) => {
     const userAlreadyExists = await userService.findByEmail(attributes.email);
     if (userAlreadyExists) {
-      throw new Error("Este email ja existe!");
+      const currentUser = await User.findByPk(id);
+      console.log(currentUser);
+      console.log(userAlreadyExists);
+      if (userAlreadyExists.id !== currentUser!.id) {
+        throw new Error("Este email ja existe!");
+      }
     }
     const [affectedRows, updatedUsers] = await User.update(attributes, {
       where: { id },

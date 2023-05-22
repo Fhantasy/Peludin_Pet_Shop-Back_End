@@ -5,6 +5,7 @@ import { authController } from "./controllers/authController";
 import { ensureAuth } from "./middlewares/auth";
 import { userController } from "./controllers/userController";
 import { purchaseController } from "./controllers/purchaseController";
+import { mailController } from "./controllers/mailController";
 
 const router = express.Router();
 
@@ -34,5 +35,7 @@ router.put("/users/current/adress", ensureAuth, userController.updateAdress);
 router.post("/purchases", ensureAuth, purchaseController.create);
 router.get("/purchases/all", ensureAuth, purchaseController.index);
 router.get("/purchases/:id", ensureAuth, purchaseController.show);
+
+router.post("/contact/send-email", mailController.sendEmail);
 
 export { router };
