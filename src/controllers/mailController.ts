@@ -1,5 +1,10 @@
 import nodemailer from "nodemailer";
 import { Request, Response } from "express";
+import {
+  EMAIL_RECEIVER,
+  EMAIL_SENDER,
+  PASS_EMAIL_SENDER,
+} from "../config/enviroment";
 
 export const mailController = {
   sendEmail: async (req: Request, res: Response) => {
@@ -11,14 +16,14 @@ export const mailController = {
         service: "gmail",
         secure: true,
         auth: {
-          user: "alanimegamer@gmail.com",
-          pass: "ezdqvikuwlkoyoxl",
+          user: EMAIL_SENDER,
+          pass: PASS_EMAIL_SENDER,
         },
       });
 
       await transport.sendMail({
-        from: "alanimegamer@gmail.com",
-        to: "alan_s_pereira@hotmail.com",
+        from: EMAIL_SENDER,
+        to: EMAIL_RECEIVER,
         subject: `Mensagem de contato de ${email}`,
         text: typeof message === "string" ? message : message?.toString(),
       });

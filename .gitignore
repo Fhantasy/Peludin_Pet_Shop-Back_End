@@ -1,3 +1,6 @@
 node_modules/
 ETAPAS/
 public/thumbnails
+.adminjs
+dist/
+.env
