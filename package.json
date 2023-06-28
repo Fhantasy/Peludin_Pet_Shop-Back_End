@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "build": "npm install && npx tsc",
-    "start": "npx sequelize-cli db:migrate && node ./dist/server.js"
+    "start": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed --seed src/database/seeders/20230416171937-create-user-seeder.js && node ./dist/server.js"
   },
   "keywords": [],
   "author": "",
